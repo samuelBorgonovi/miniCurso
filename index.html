@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html ng-app="helloWorld">
+	<head>
+		<title>Olá Mundo</title>
+	</head>
+
+		<script type="text/javascript" src="angular.js"></script>
+		<script type="text/javascript" src="minicurso.js"></script>
+
+	<body ng-controller="helloCtrl">
+		<form center ng-submit="novaTarefa()">
+			<p>Descreva a tarefa:</p>
+			<p><input type="text" ng-model="tarefa"></p>
+			<p><button type="submit">Adicionar</button></p>
+		</form>
+		<p><button ng-click="removerTarefas()">Remover Tarefas</button></p>
+		<hr>
+		<div ng-repeat="t in tarefas track by $index">
+			<input type="checkbox" ng-model="t.feita">
+
+			<span ng-show="!t.ehInput">{{t.desc}}&nbsp;</span>
+			<input type="text" ng-show="t.ehInput" ng-model="t.desc">
+
+			<button ng-show="!t.ehInput" ng-click="editarTarefa($index)">Editar</button>
+			<button ng-show="t.ehInput" ng-click="salvarTarefa($index)">Salvar</button>
+		</div>
+	</body>
+</html>
